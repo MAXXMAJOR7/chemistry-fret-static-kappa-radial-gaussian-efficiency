@@ -1,0 +1,730 @@
+{
+  "schema": {
+    "input": {
+      "value_a": "float [15, 80]",
+      "value_b": "float [0, 12]",
+      "value_c": "float [0.05, 1]",
+      "value_d": "float [1e13, 1e16]"
+    },
+    "output": {
+      "output": "float, 4 decimals"
+    }
+  },
+  "seed": 50,
+  "cases": [
+    {
+      "id": "edge_control_1",
+      "category": "control",
+      "label": "Single distance, r = 2 R0: weak-transfer regime, orientation twist nearly neutral (dynamic 2/3 gives 1.6076)",
+      "input": {
+        "value_a": 60.0,
+        "value_b": 0.0,
+        "value_c": 0.5,
+        "value_d": 100000000000000.0
+      },
+      "expected": {
+        "output": 1.5788
+      }
+    },
+    {
+      "id": "edge_control_2",
+      "category": "control",
+      "label": "Single distance, r = 2.9 R0: far regime, E ~ <kappa^2> X / r^6, twist neutral to 4e-4",
+      "input": {
+        "value_a": 80.0,
+        "value_b": 0.0,
+        "value_c": 0.3,
+        "value_d": 100000000000000.0
+      },
+      "expected": {
+        "output": 0.1738
+      }
+    },
+    {
+      "id": "edge_control_3",
+      "category": "control",
+      "label": "Single distance, largest r / R0 (5.7): both twists neutral, textbook r^-6 law",
+      "input": {
+        "value_a": 80.0,
+        "value_b": 0.0,
+        "value_c": 0.05,
+        "value_d": 10000000000000.0
+      },
+      "expected": {
+        "output": 0.0029
+      }
+    },
+    {
+      "id": "edge_discrim_1",
+      "category": "discriminating",
+      "label": "Single distance, r = 0.9 R0: static kappa^2 average gives 48.6 vs textbook 65.0",
+      "input": {
+        "value_a": 40.0,
+        "value_b": 0.0,
+        "value_c": 0.5,
+        "value_d": 1000000000000000.0
+      },
+      "expected": {
+        "output": 48.6019
+      }
+    },
+    {
+      "id": "edge_discrim_2",
+      "category": "discriminating",
+      "label": "Single distance, r = 0.68 R0: static average 73.6 vs textbook 91.3",
+      "input": {
+        "value_a": 30.0,
+        "value_b": 0.0,
+        "value_c": 0.5,
+        "value_d": 1000000000000000.0
+      },
+      "expected": {
+        "output": 73.6412
+      }
+    },
+    {
+      "id": "edge_discrim_3",
+      "category": "discriminating",
+      "label": "sigma = 8 A at r ~ R0: r^2-weighted Gaussian LOWERS E (42.4) while a plain Gaussian raises it (49.3)",
+      "input": {
+        "value_a": 40.0,
+        "value_b": 8.0,
+        "value_c": 0.5,
+        "value_d": 1000000000000000.0
+      },
+      "expected": {
+        "output": 42.4299
+      }
+    },
+    {
+      "id": "edge_discrim_4",
+      "category": "discriminating",
+      "label": "Wide distribution centred at 1.1 R0: both twists fire together",
+      "input": {
+        "value_a": 80.0,
+        "value_b": 12.0,
+        "value_c": 1.0,
+        "value_d": 1e+16
+      },
+      "expected": {
+        "output": 27.0273
+      }
+    },
+    {
+      "id": "edge_discrim_5",
+      "category": "discriminating",
+      "label": "Small centre, wide sigma: r^2 Jacobian empties short distances (44.2 vs plain Gaussian 71.6, single r 85.6)",
+      "input": {
+        "value_a": 15.0,
+        "value_b": 12.0,
+        "value_c": 0.3,
+        "value_d": 100000000000000.0
+      },
+      "expected": {
+        "output": 44.1509
+      }
+    },
+    {
+      "id": "edge_boundary_1",
+      "category": "boundary",
+      "label": "Shortest distance, largest R0 (r = 0.2 R0): 100 - E ~ r^3 tail from kappa^2 -> 0 orientations (99.16 vs textbook 99.99)",
+      "input": {
+        "value_a": 15.0,
+        "value_b": 0.0,
+        "value_c": 1.0,
+        "value_d": 1e+16
+      },
+      "expected": {
+        "output": 99.1601
+      }
+    },
+    {
+      "id": "edge_boundary_2",
+      "category": "boundary",
+      "label": "Smallest R0 with the widest distribution at the lowest centre: P(r) clipped at r = 0",
+      "input": {
+        "value_a": 15.0,
+        "value_b": 12.0,
+        "value_c": 0.05,
+        "value_d": 10000000000000.0
+      },
+      "expected": {
+        "output": 9.393
+      }
+    },
+    {
+      "id": "edge_boundary_3",
+      "category": "boundary",
+      "label": "sigma -> 0 limit (0.5 A): continuous with the single-distance value 48.6019",
+      "input": {
+        "value_a": 40.0,
+        "value_b": 0.5,
+        "value_c": 0.5,
+        "value_d": 1000000000000000.0
+      },
+      "expected": {
+        "output": 48.5738
+      }
+    },
+    {
+      "id": "rand_00",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 47.34,
+        "value_b": 3.194,
+        "value_c": 0.6555,
+        "value_d": 53387000000000.0
+      },
+      "expected": {
+        "output": 4.4181
+      }
+    },
+    {
+      "id": "rand_01",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 45.756,
+        "value_b": 11.644,
+        "value_c": 0.1309,
+        "value_d": 89565000000000.0
+      },
+      "expected": {
+        "output": 2.6188
+      }
+    },
+    {
+      "id": "rand_02",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 58.969,
+        "value_b": 1.023,
+        "value_c": 0.1957,
+        "value_d": 2991000000000000.0
+      },
+      "expected": {
+        "output": 15.0655
+      }
+    },
+    {
+      "id": "rand_03",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 78.682,
+        "value_b": 3.832,
+        "value_c": 0.2295,
+        "value_d": 8262800000000000.0
+      },
+      "expected": {
+        "output": 9.8441
+      }
+    },
+    {
+      "id": "rand_04",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 36.38,
+        "value_b": 7.245,
+        "value_c": 0.6271,
+        "value_d": 803460000000000.0
+      },
+      "expected": {
+        "output": 51.2842
+      }
+    },
+    {
+      "id": "rand_05",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 74.5,
+        "value_b": 11.549,
+        "value_c": 0.7085,
+        "value_d": 2983400000000000.0
+      },
+      "expected": {
+        "output": 13.6988
+      }
+    },
+    {
+      "id": "rand_06",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 66.599,
+        "value_b": 7.717,
+        "value_c": 0.4588,
+        "value_d": 48047000000000.0
+      },
+      "expected": {
+        "output": 0.4323
+      }
+    },
+    {
+      "id": "rand_07",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 32.302,
+        "value_b": 11.16,
+        "value_c": 0.7151,
+        "value_d": 20768000000000.0
+      },
+      "expected": {
+        "output": 11.8823
+      }
+    },
+    {
+      "id": "rand_08",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 74.203,
+        "value_b": 3.253,
+        "value_c": 0.7078,
+        "value_d": 239870000000000.0
+      },
+      "expected": {
+        "output": 1.5232
+      }
+    },
+    {
+      "id": "rand_09",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 32.528,
+        "value_b": 2.511,
+        "value_c": 0.6001,
+        "value_d": 171910000000000.0
+      },
+      "expected": {
+        "output": 41.8698
+      }
+    },
+    {
+      "id": "rand_10",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 55.589,
+        "value_b": 8.352,
+        "value_c": 0.8285,
+        "value_d": 3627100000000000.0
+      },
+      "expected": {
+        "output": 41.9961
+      }
+    },
+    {
+      "id": "rand_11",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 55.655,
+        "value_b": 11.597,
+        "value_c": 0.5213,
+        "value_d": 4598900000000000.0
+      },
+      "expected": {
+        "output": 35.7837
+      }
+    },
+    {
+      "id": "rand_12",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 67.973,
+        "value_b": 9.811,
+        "value_c": 0.1689,
+        "value_d": 514410000000000.0
+      },
+      "expected": {
+        "output": 1.5375
+      }
+    },
+    {
+      "id": "rand_13",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 48.578,
+        "value_b": 1.118,
+        "value_c": 0.3994,
+        "value_d": 354970000000000.0
+      },
+      "expected": {
+        "output": 12.4394
+      }
+    },
+    {
+      "id": "rand_14",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 15.438,
+        "value_b": 0.108,
+        "value_c": 0.6077,
+        "value_d": 170940000000000.0
+      },
+      "expected": {
+        "output": 91.3244
+      }
+    },
+    {
+      "id": "rand_15",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 78.593,
+        "value_b": 10.203,
+        "value_c": 0.8374,
+        "value_d": 2561200000000000.0
+      },
+      "expected": {
+        "output": 11.0589
+      }
+    },
+    {
+      "id": "rand_16",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 29.572,
+        "value_b": 8.71,
+        "value_c": 0.143,
+        "value_d": 25738000000000.0
+      },
+      "expected": {
+        "output": 7.4811
+      }
+    },
+    {
+      "id": "rand_17",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 39.445,
+        "value_b": 2.949,
+        "value_c": 0.0818,
+        "value_d": 357780000000000.0
+      },
+      "expected": {
+        "output": 9.6833
+      }
+    },
+    {
+      "id": "rand_18",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 77.777,
+        "value_b": 0.945,
+        "value_c": 0.2753,
+        "value_d": 6011000000000000.0
+      },
+      "expected": {
+        "output": 9.2758
+      }
+    },
+    {
+      "id": "rand_19",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 49.342,
+        "value_b": 5.581,
+        "value_c": 0.4474,
+        "value_d": 2903500000000000.0
+      },
+      "expected": {
+        "output": 41.4043
+      }
+    },
+    {
+      "id": "rand_20",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 45.562,
+        "value_b": 4.837,
+        "value_c": 0.3944,
+        "value_d": 2116500000000000.0
+      },
+      "expected": {
+        "output": 42.2227
+      }
+    },
+    {
+      "id": "rand_21",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 16.247,
+        "value_b": 5.323,
+        "value_c": 0.6574,
+        "value_d": 10629000000000.0
+      },
+      "expected": {
+        "output": 50.7229
+      }
+    },
+    {
+      "id": "rand_22",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 35.593,
+        "value_b": 4.162,
+        "value_c": 0.6627,
+        "value_d": 361750000000000.0
+      },
+      "expected": {
+        "output": 45.706
+      }
+    },
+    {
+      "id": "rand_23",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 47.358,
+        "value_b": 3.618,
+        "value_c": 0.4583,
+        "value_d": 6018100000000000.0
+      },
+      "expected": {
+        "output": 58.7542
+      }
+    },
+    {
+      "id": "rand_24",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 22.299,
+        "value_b": 1.055,
+        "value_c": 0.2017,
+        "value_d": 14141000000000.0
+      },
+      "expected": {
+        "output": 21.348
+      }
+    },
+    {
+      "id": "rand_25",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 24.298,
+        "value_b": 3.732,
+        "value_c": 0.7508,
+        "value_d": 7502500000000000.0
+      },
+      "expected": {
+        "output": 94.3652
+      }
+    },
+    {
+      "id": "rand_26",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 16.029,
+        "value_b": 6.002,
+        "value_c": 0.2789,
+        "value_d": 4987500000000000.0
+      },
+      "expected": {
+        "output": 93.7648
+      }
+    },
+    {
+      "id": "rand_27",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 79.729,
+        "value_b": 8.37,
+        "value_c": 0.0753,
+        "value_d": 303510000000000.0
+      },
+      "expected": {
+        "output": 0.1501
+      }
+    },
+    {
+      "id": "rand_28",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 43.087,
+        "value_b": 6.478,
+        "value_c": 0.2624,
+        "value_d": 12033000000000.0
+      },
+      "expected": {
+        "output": 0.9033
+      }
+    },
+    {
+      "id": "rand_29",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 54.325,
+        "value_b": 9.918,
+        "value_c": 0.3686,
+        "value_d": 136190000000000.0
+      },
+      "expected": {
+        "output": 3.3555
+      }
+    },
+    {
+      "id": "rand_30",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 17.889,
+        "value_b": 6.398,
+        "value_c": 0.8252,
+        "value_d": 276100000000000.0
+      },
+      "expected": {
+        "output": 81.6895
+      }
+    },
+    {
+      "id": "rand_31",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 23.191,
+        "value_b": 1.367,
+        "value_c": 0.8576,
+        "value_d": 1363400000000000.0
+      },
+      "expected": {
+        "output": 90.9894
+      }
+    },
+    {
+      "id": "rand_32",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 31.602,
+        "value_b": 6.175,
+        "value_c": 0.1665,
+        "value_d": 477590000000000.0
+      },
+      "expected": {
+        "output": 36.2263
+      }
+    },
+    {
+      "id": "rand_33",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 16.82,
+        "value_b": 3.604,
+        "value_c": 0.5105,
+        "value_d": 249340000000000.0
+      },
+      "expected": {
+        "output": 86.2173
+      }
+    },
+    {
+      "id": "rand_34",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 34.153,
+        "value_b": 7.97,
+        "value_c": 0.2859,
+        "value_d": 2223800000000000.0
+      },
+      "expected": {
+        "output": 58.0519
+      }
+    },
+    {
+      "id": "rand_35",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 69.021,
+        "value_b": 6.882,
+        "value_c": 0.9614,
+        "value_d": 55860000000000.0
+      },
+      "expected": {
+        "output": 0.8116
+      }
+    },
+    {
+      "id": "rand_36",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 78.488,
+        "value_b": 0.591,
+        "value_c": 0.5836,
+        "value_d": 35832000000000.0
+      },
+      "expected": {
+        "output": 0.136
+      }
+    },
+    {
+      "id": "rand_37",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 22.468,
+        "value_b": 3.318,
+        "value_c": 0.4109,
+        "value_d": 10111000000000.0
+      },
+      "expected": {
+        "output": 24.7817
+      }
+    },
+    {
+      "id": "rand_38",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 33.325,
+        "value_b": 11.081,
+        "value_c": 0.8134,
+        "value_d": 999080000000000.0
+      },
+      "expected": {
+        "output": 56.4839
+      }
+    },
+    {
+      "id": "rand_39",
+      "category": "random",
+      "label": "uniform value_a..value_c, log-uniform value_d",
+      "input": {
+        "value_a": 77.659,
+        "value_b": 5.825,
+        "value_c": 0.7697,
+        "value_d": 4787800000000000.0
+      },
+      "expected": {
+        "output": 17.1704
+      }
+    }
+  ]
+}
